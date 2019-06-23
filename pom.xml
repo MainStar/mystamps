@@ -9,6 +9,11 @@
 	<packaging>war</packaging>
 	
 	<dependencies>
+
+		<dependency><groupId>com.jarslab.maven</groupId>
+			<artifactId>babel-maven-plugin</artifactId>
+			<version>${babel.plugin.version}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>com.github.heneke.thymeleaf</groupId>
@@ -462,6 +467,8 @@
 		<!-- Set JVM options for maven-surefire-plugin -->
 		<argLine>-Xss256k</argLine>
 		
+		<babel.plugin.version>1.0</babel.plugin.version>
+		
 		<!-- Don't forget to update version in the ResourceUrl class -->
 		<bootstrap.version>3.4.1</bootstrap.version>
 		
@@ -673,6 +680,33 @@
 					<includeTests>true</includeTests>
 					<excludeFilterFile>src/main/config/spotbugs-filter.xml</excludeFilterFile>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>com.jarslab.maven</groupId>
+				<artifactId>babel-maven-plugin</artifactId>
+				<version>${babel.plugin.version}</version>
+				<configuration>
+					<sourceDir>${basedir}\src\main\javascript</sourceDir>
+					<targetDir>${basedir}\target</targetDir>
+					<babelSrc>${basedir}/target/babel/babel.min.js</babelSrc>
+					<presets>es2015,react</presets>
+					<!--
+					<babelSrc>${settings.localRepository}/org/webjars/npm/babel-standalone/6.21.1/babel-standalone-6.21.1.jar!META-INF/resources/webjars/babel-standalone/6.21.1/babel.min.js</babelSrc>
+					-->
+					<jsSourceIncludes>
+						<jsSourceInclude>**/*.jsx</jsSourceInclude>
+					</jsSourceIncludes>
+					<verbose>true</verbose>
+					<prefix>babel</prefix>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.webjars.npm</groupId>
+						<artifactId>babel-standalone</artifactId>
+						<version>6.21.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			
 			<plugin>

@@ -755,6 +755,11 @@
 								</div>
 							</div>
 							
+							<div id="importSeriesSaleForm"
+								togglz:active="ADD_PURCHASES_AND_SALES"
+								sec:authorize="hasAuthority('IMPORT_SERIES_SALES')">
+							</div>
+							
 						</div>
 						
 					</div>
@@ -783,6 +788,64 @@
 		</th:block>
 		/*/-->
 
+		<!--/*/
+		<th:block togglz:active="ADD_PURCHASES_AND_SALES" sec:authorize="hasAuthority('IMPORT_SERIES_SALES')">
+		/*/-->
+		<!-- TODO: substitute URLs from ResourceUrl (https://unpkg.com/react@16.8.6/umd/react.production.min.js and https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js) -->
+		<!-- TODO: deal with CSP: allow load from this domain -->
+		<script src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+		<script>
+			let tag = React.createElement;
+			let rootElement =
+				tag('div', {className: 'row'},
+					tag('div', {className: 'col-sm-12'},
+						tag('div',  {className: 'row'},
+							tag('div', {className: 'col-sm-12'},
+								/* TODO: add translation */
+								tag('h5', {}, 'Import info about selling this series')
+							)
+						),
+						tag('div',  {className: 'row'},
+							/* TODO: add translation */
+							/* TODO: add logic for hiding/showing this element */
+							tag('div', {className: 'alert alert-danger text-center col-sm-8 col-sm-offset-2 hidden'}, 'Could not import information from this page')
+						),
+						tag('div',  {className: 'row'},
+							tag('div', {className: 'col-sm-12'},
+								tag('form', {className: 'form-horizontal'},
+									tag('div', {className: 'form-group form-group-sm'},
+										/* TODO: deal with label for+id */
+										tag('label', {className: 'control-label col-sm-3', 'htmlFor': 'series-sale-url'},
+											/* TODO: add translation */
+											'URL',
+											'\u00a0', /* TODO: add space with CSS */
+											tag('span', {className: 'required_field'}, '*')
+										),
+										tag('div', {className: 'col-sm-6'},
+											tag('input', {className: 'form-control', 'type': 'url', 'required': 'required', 'id': 'series-sale-url'}),
+											/* TODO: add logic for hiding/showing this element */
+											tag('span', {className: 'help-block hidden'})
+										)
+									),
+									tag('div', {className: 'form-group form-group-sm'},
+										tag('div', {className: 'col-sm-offset-3 col-sm-4'},
+											/* TODO: add translation */
+											tag('button', {className: 'btn btn-primary', type: 'submit'}, 'Import info')
+										)
+									),
+								)
+							)
+						)
+					)
+				);
+			let destNode = document.getElementById('importSeriesSaleForm');
+			ReactDOM.render(rootElement, destNode);
+		</script>
+		<!--/*/
+		</th:block>
+		/*/-->
+		
 		<!--/*
 			NOTE: It won't work properly, if user can import a sale but can't view it because
 			initPage() is came from series/info.js file.
