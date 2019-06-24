@@ -4,7 +4,7 @@
   "description": "Frontend of https://my-stamps.ru",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir ../../../target/classes/js"
   },
   "repository": {
     "type": "git",
