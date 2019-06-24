@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/php-coder/mystamps/issues"
   },
-  "homepage": "https://github.com/php-coder/mystamps#readme"
+  "homepage": "https://github.com/php-coder/mystamps#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
 }
