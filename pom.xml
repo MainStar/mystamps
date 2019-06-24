@@ -636,6 +636,7 @@
 				<version>${frontend.plugin.version}</version>
 				<configuration>
 					<nodeVersion>v10.16.0</nodeVersion>
+					<workingDirectory>${basedir}/src/main/frontend</workingDirectory>
 				</configuration>
 				<executions>
 					<execution>
