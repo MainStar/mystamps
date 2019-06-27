@@ -86,6 +86,11 @@ public class SiteConfig {
 		}
 		
 	}
+
+	@Bean
+	public CspController cspController(){
+		return new CspController();
+	}
 	
 	@RequiredArgsConstructor
 	public static class Services {
